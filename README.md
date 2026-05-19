@@ -66,6 +66,28 @@ Content is driven from `config/sales.php` and passed via `SalesPageController`.
 | `TYPESENSE_*` | Search cluster connection |
 | `AWS_*` | S3 bucket & optional CloudFront URL |
 
+## Deploy on Railway
+
+This project requires **PHP 8.4+** (Laravel 13 / Symfony 8). Railway is configured via:
+
+- `.php-version` — `8.4`
+- `nixpacks.toml` — `NIXPACKS_PHP_VERSION` and `php84` package
+- `railway.toml` — start command and health check on `/up`
+
+Set these environment variables in Railway:
+
+| Variable | Example |
+|----------|---------|
+| `APP_KEY` | `base64:...` (run `php artisan key:generate --show`) |
+| `APP_ENV` | `production` |
+| `APP_DEBUG` | `false` |
+| `APP_URL` | `https://your-app.up.railway.app` |
+| `DATABASE_URL` | (from Railway PostgreSQL plugin) |
+
+Redeploy after pushing. If the build still uses PHP 8.3, add a Railway variable: `NIXPACKS_PHP_VERSION=8.4`.
+
+Also set `NIXPACKS_PHP_ROOT_DIR=/app/public` so the web server uses Laravel's `public/` directory.
+
 ## Build for production
 
 ```bash
