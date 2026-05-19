@@ -71,7 +71,7 @@ Content is driven from `config/sales.php` and passed via `SalesPageController`.
 This project requires **PHP 8.4+** (Laravel 13 / Symfony 8). Railway is configured via:
 
 - `.php-version` — `8.4`
-- `nixpacks.toml` — `NIXPACKS_PHP_VERSION=8.4` (extends auto packages with `"..."` so Composer is included)
+- `nixpacks.toml` — `php84`, `php84Packages.composer`, `nodejs_20` (no `"..."` — avoids Node collision)
 - `railway.toml` — start command and health check on `/up`
 
 Set these environment variables in Railway:

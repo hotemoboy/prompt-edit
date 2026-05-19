@@ -1,9 +1,9 @@
-# Laravel 13 + Symfony 8 require PHP 8.4 (Railway defaults to 8.3 without this)
+# Laravel 13 + Symfony 8 require PHP 8.4
 [variables]
 NIXPACKS_PHP_VERSION = "8.4"
 NIXPACKS_PHP_ROOT_DIR = "/app/public"
 
-# "..." keeps Nixpacks auto-detected PHP packages (including Composer).
-# Do NOT override with only ["php84", "nodejs_20"] — that drops Composer.
+# Explicit packages only — no "..." (avoids nodejs_18 vs nodejs_20 collision).
+# Composer must be listed explicitly when overriding nixPkgs.
 [phases.setup]
-nixPkgs = ["...", "nodejs_20"]
+nixPkgs = ["php84", "php84Packages.composer", "nodejs_20"]
