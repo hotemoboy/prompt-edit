@@ -3,5 +3,7 @@
 NIXPACKS_PHP_VERSION = "8.4"
 NIXPACKS_PHP_ROOT_DIR = "/app/public"
 
+# "..." keeps Nixpacks auto-detected PHP packages (including Composer).
+# Do NOT override with only ["php84", "nodejs_20"] — that drops Composer.
 [phases.setup]
-nixPkgs = ["php84", "nodejs_20"]
+nixPkgs = ["...", "nodejs_20"]
